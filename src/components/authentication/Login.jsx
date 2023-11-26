@@ -1,33 +1,33 @@
 import React from 'react'
-import './Login.css'
+import './Auth.css'
 
 
 export default function Login() {
-  return (
-    <section class="container forms">
-            <div class="form login">
-                <div class="form-content">
+    return (
+        <section className="form-container  forms">
+            <div className="form login">
+                <div className="form-content">
                     <header>Login</header>
                     <form action="#">
-                        <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input" />
+                        <div className="field input-field">
+                            <input type="email" placeholder="Email" className="input" />
                         </div>
-                        <div class="field input-field">
-                            <input type="password" placeholder="Password" class="password" />
-                            <i class='bx bx-hide eye-icon'></i>
+                        <div className="field input-field">
+                            <input type="password" placeholder="Password" className="password" />
+                            <i className='bx bx-hide eye-icon'></i>
                         </div>
-                        <div class="form-link">
-                            <a href="#" class="forgot-pass">Forgot password?</a>
+                        <div className="form-link">
+                            <a href="#" className="forgot-pass">Forgot password?</a>
                         </div>
-                        <div class="field button-field">
+                        <div className="field button-field">
                             <button>Login</button>
                         </div>
                     </form>
-                    <div class="form-link">
-                        <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+                    <div className="form-link">
+                        <span>Don't have an account? <a href="#" className="link signup-link">Signup</a></span>
                     </div>
                 </div>
             </div>
         </section>
-  )
+    )
 }
