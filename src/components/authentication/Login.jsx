@@ -1,33 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Auth.css'
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 
-export default function Login() {
+function Login() {
+    const navigate = useNavigate()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleLogin = async () => {
+        if (username == '' || password == '') {
+            toast.error("credentials not entered")
+            return;
+        }
+
+        try {
+            var response = await fetch('http://127.0.0.1:8000/accounts/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+            var response = await response.json();
+            if (response.status) {
+                localStorage.setItem("user", response.user);
+                toast.success("login successfull")
+                navigate('/')
+            } else {
+                navigate('/login')
+                toast.error('credential error')
+            }
+        } catch (error) {
+            console.log('Error during login:', error);
+        }
+    };
+
     return (
-        <section className="form-container  forms">
-            <div className="form login">
-                <div className="form-content">
-                    <header>Login</header>
-                    <form action="#">
-                        <div className="field input-field">
-                            <input type="email" placeholder="Email" className="input" />
-                        </div>
-                        <div className="field input-field">
-                            <input type="password" placeholder="Password" className="password" />
-                            <i className='bx bx-hide eye-icon'></i>
-                        </div>
-                        <div className="form-link">
-                            <a href="#" className="forgot-pass">Forgot password?</a>
-                        </div>
-                        <div className="field button-field">
-                            <button>Login</button>
-                        </div>
+        <>
+            <div className="auth-container">
+                <div className="login form">
+                    <h2 className='form-head'>Login</h2>
+                    <form action="" method="post">
+                        <input className="user-input" value={username} onChange={(e) => setUsername(e.target.value)} name="username" type="text" placeholder="Username" autoComplete='username' />
+                        <input className="user-input" value={password} onChange={(e) => setPassword(e.target.value)} name="password" type="password" placeholder="Enter your password" autoComplete="current-password" />
+                        <div className="g-recaptcha" data-sitekey="6Le1otMoAAAAACcDx3obXi-ZBhLfReyXZh_e-iDY" required></div>
+                        <a href="#">Forgot password?</a>
+                        <input type="button" onClick={handleLogin} className="button" value="Login" />
                     </form>
-                    <div className="form-link">
-                        <span>Don't have an account? <a href="#" className="link signup-link">Signup</a></span>
+                    <div className="signup">
+                        <span className="signup">Don't have an account?&nbsp;
+                            <Link to='/signup'>Signup</Link>
+                        </span>
                     </div>
                 </div>
             </div>
-        </section>
+        </>
     )
 }
+
+export default Login;
