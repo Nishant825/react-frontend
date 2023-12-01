@@ -29,7 +29,7 @@ export default function Books({ books }) {
                             <span className="author">{book.author.first_name} {book.author.last_name}</span>
                         </div>
                         <div className='assign'>
-                            <input type="button" value="Add to Cart" onClick={addToCart} className='assign-btn' />
+                            <input type="button" value="Add to Cart" onClick={() => addToCart(book)} className='assign-btn' />
                         </div>
                     </div>
                 ))}

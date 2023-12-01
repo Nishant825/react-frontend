@@ -17,9 +17,8 @@ header {
   animation: slideRight 1s ease forwards;
 }
 
-.navbar a,
-.navbar button,
-#cart-btn {
+nav a,
+nav button {
   font-size: 18px;
   color: white;
   text-decoration: none;
@@ -30,11 +29,11 @@ header {
   position: relative;
 }
 
-.navbar a:disabled {
+.nav a:disabled {
   cursor: default;
 }
 
-.navbar a.active {
+nav a.active {
   color: #0ef;
 }
 
@@ -59,7 +58,7 @@ header {
   border-bottom: 2px solid;
 }
 
-.navbar button {
+nav button {
   background: none;
   border: none;
   color: white;
@@ -67,8 +66,17 @@ header {
   padding: 0;
 }
 
-#cart-btn {
+#cart-count {
   color: white;
-  font-size: 35px;
-  top: 5px;
+  font-size: 20px;
+}
+
+#cart-box {
+  font-size: 25px;
+  color: white;
+  margin-left: 30px;
+}
+
+.bx {
+  padding-bottom: 0;
 }

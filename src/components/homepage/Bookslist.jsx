@@ -14,11 +14,11 @@ export default function Bookslist() {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (isAuth == null) {
-      navigate('/login');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isAuth == null) {
+  //     navigate('/login');
+  //   }
+  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
