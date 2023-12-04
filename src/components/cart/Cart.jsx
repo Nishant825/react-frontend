@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cart.css'
 import { useCartContext } from '../../context/CartProvider';
 
 
 
 export default function Cart() {
-    const { cartItems } = useCartContext();
+    const { cartItems, cartCount } = useCartContext();
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [quantity, setQuantity] = useState(1)
+
     console.log(cartItems, "$$$$$$$$$$$$$$$4")
+    useEffect(() => {
+        let newTotalPrice = cartItems.reduce((total, item) => total + item.price * quantity, 0);
+        if (newTotalPrice > 0) {
+            setTotalPrice(newTotalPrice + 50);
+
+        }
+    }, [cartItems, quantity]);
 
     return (
         <div className="card">
@@ -15,7 +25,7 @@ export default function Cart() {
                     <div className="title">
                         <div className="row">
                             <div className="col"><h4><b>Shopping Cart</b></h4></div>
-                            <div className="col align-self-center text-right text-muted">3 items</div>
+                            <div className="col align-self-center text-right text-muted">{cartCount} items</div>
                         </div>
                     </div>
 
@@ -28,9 +38,9 @@ export default function Cart() {
                                     <div className="row">{item.author.first_name}</div>
                                 </div>
                                 <div className="col">
-                                    <a href="#">-</a><a href="#" className="border">1</a><a href="#">+</a>
+                                    <a href="#" onClick={() => { setQuantity(quantity - 1) }}>-</a><a href="#" className="border">{quantity}</a><a onClick={() => { setQuantity(quantity + 1) }} href="#">+</a>
                                 </div>
-                                <div className="col">&euro; {item.price} <span className="close">&#10005;</span></div>
+                                <div className="col">₹ {item.price} <span className="close">&#10005;</span></div>
                             </div>
                         </div>
                     ))}
@@ -42,18 +52,18 @@ export default function Cart() {
                     <div><h5><b>Summary</b></h5></div>
                     <hr />
                     <div className="row">
-                        <div className="col" style={{ paddingLeft: 0 }}>ITEMS 3</div>
-                        <div className="col text-right">&euro; 132.00</div>
+                        <div className="col" style={{ paddingLeft: 0 }}>{cartCount}</div>
+                        <div className="col text-right">₹ {totalPrice}</div>
                     </div>
                     <form>
                         <p>SHIPPING</p>
-                        <select><option className="text-muted">Standard-Delivery- &euro;5.00</option></select>
+                        <select><option className="text-muted">Standard-Delivery- ₹50.00</option></select>
                         <p>GIVE CODE</p>
                         <input id="code" placeholder="Enter your code" />
                     </form>
                     <div className="row" style={{ borderTop: '1px solid rgba(0,0,0,.1)', padding: '2vh 0' }}>
                         <div className="col">TOTAL PRICE</div>
-                        <div className="col text-right">&euro; 137.00</div>
+                        <div className="col text-right">₹ {totalPrice}</div>
                     </div>
                     <button className="btn">CHECKOUT</button>
                 </div>

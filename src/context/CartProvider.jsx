@@ -9,17 +9,19 @@ export function useCartContext() {
 export default function CartProvider({ children }) {
     const [cartCount, setCartCount] = useState(0);
     const [cartItems, setCartItems] = useState([]);
+    const [isButtonClicked, setDisabledButtons] = useState([]);
 
-    const addToCart = (e) => {
-        console.log(e)
+    const addToCart = (book, bookid) => {
         setCartCount(cartCount + 1);
-        setCartItems([...cartItems, e]);
+        setCartItems([...cartItems, book]);
+        setDisabledButtons([...isButtonClicked, bookid]);
         // e.target.disabled = true;
     };
     const value = {
         cartCount,
         cartItems,
         addToCart,
+        isButtonClicked
     };
     console.log(cartItems, "000000000")
     return (

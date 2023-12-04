@@ -5,7 +5,8 @@ import { useCartContext } from '../../context/CartProvider';
 
 export default function Books({ books }) {
     const BASE_URL = "http://127.0.0.1:8000"
-    const { addToCart } = useCartContext();
+    const { addToCart, isButtonClicked } = useCartContext();
+
     return (
         <div id="large-th">
             <div className="home-container">
@@ -29,7 +30,7 @@ export default function Books({ books }) {
                             <span className="author">{book.author.first_name} {book.author.last_name}</span>
                         </div>
                         <div className='assign'>
-                            <input type="button" value="Add to Cart" onClick={() => addToCart(book)} className='assign-btn' />
+                            <input type="button" disabled={isButtonClicked.includes(book.id)} value={isButtonClicked ? 'Added to Cart' : 'Add to Cart'} onClick={() => addToCart(book, book.id)} className='assign-btn' />
                         </div>
                     </div>
                 ))}

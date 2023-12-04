@@ -1,10 +1,11 @@
 header {
   width: 100%;
-  padding: 20px 10%;
-  background: transparent;
+  padding: 20px 5%;
+  /* background: transparent; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #1f242d;
 }
 
 .logo {
@@ -33,6 +34,12 @@ nav button {
   cursor: default;
 }
 
+nav {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
 nav a.active {
   color: #0ef;
 }
@@ -42,6 +49,7 @@ nav a.active {
     transform: translateX(-100px);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -71,12 +79,38 @@ nav button {
   font-size: 20px;
 }
 
-#cart-box {
+
+.bx {
   font-size: 25px;
-  color: white;
+  vertical-align: middle;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+nav a:hover {
+  color: #0ef;
+}
+
+#profile-pic {
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
   margin-left: 30px;
 }
 
-.bx {
-  padding-bottom: 0;
+.cart-link {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  right: -7px;
+  background-color: lightcoral;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
 }
