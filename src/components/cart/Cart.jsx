@@ -3,8 +3,10 @@ import './Cart.css'
 import { useCartContext } from '../../context/CartProvider';
 
 
+
 export default function Cart() {
     const { cartItems } = useCartContext();
+    console.log(cartItems, "$$$$$$$$$$$$$$$4")
 
     return (
         <div className="card">

@@ -6,8 +6,6 @@ import Navbar from './components/navbar/Navbar';
 import Bookslist from './components/homepage/Bookslist';
 import Protected from './utils/Protected';
 import Cart from './components/cart/Cart';
-import Notfound from './components/404page/Notfound';
-import Payment from './components/payment/Payment';
 
 
 function App() {
@@ -15,12 +13,10 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Protected><Bookslist /></Protected>} />
+        <Route path="/" element={ <Protected><Bookslist /></Protected>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<Notfound />} />
-        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );
