@@ -1,7 +1,6 @@
 header {
   width: 100%;
   padding: 20px 5%;
-  /* background: transparent; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +15,12 @@ header {
   cursor: default;
   opacity: 0;
   animation: slideRight 1s ease forwards;
+  pointer-events: none;
+}
+
+.logo:hover {
+  color: white;
+  text-decoration: none;
 }
 
 nav a,
@@ -79,7 +84,6 @@ nav button {
   font-size: 20px;
 }
 
-
 .bx {
   font-size: 25px;
   vertical-align: middle;
@@ -89,6 +93,7 @@ nav button {
 
 nav a:hover {
   color: #0ef;
+  text-decoration: none;
 }
 
 #profile-pic {
@@ -100,9 +105,9 @@ nav a:hover {
   margin-left: 30px;
 }
 
-.cart-link {
+/* .cart-link {
   position: relative;
-}
+} */
 
 .badge {
   position: absolute;

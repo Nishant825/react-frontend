@@ -38,7 +38,7 @@ export default function Cart() {
                                     <div className="row">{item.author.first_name}</div>
                                 </div>
                                 <div className="col">
-                                    <a href="#" onClick={() => { setQuantity(quantity - 1) }}>-</a><a href="#" className="border">{quantity}</a><a onClick={() => { setQuantity(quantity + 1) }} href="#">+</a>
+                                    <a href="#" onClick={() => { setQuantity(quantity - 1) }} className='quantity'>-</a><a href="#" className="border">{quantity}</a><a onClick={() => { setQuantity(quantity + 1) }} href="#" className='quantity'>+</a>
                                 </div>
                                 <div className="col">₹ {item.price} <span className="close">&#10005;</span></div>
                             </div>
