@@ -107,8 +107,8 @@ form {
 
 select {
   border: 1px solid rgba(0, 0, 0, 0.137);
-  padding: 1.5vh 1vh;
   margin-bottom: 4vh;
+  padding: 6px;
   outline: none;
   width: 100%;
   background-color: rgb(247, 247, 247);
@@ -171,4 +171,8 @@ a.quantity {
   background-repeat: no-repeat;
   background-position-x: 95%;
   background-position-y: center;
+}
+
+#cart-status {
+  text-align: center;
 }

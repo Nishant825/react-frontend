@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Cart.css'
 import { useCartContext } from '../../context/CartProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -8,8 +9,8 @@ export default function Cart() {
     const { cartItems, cartCount } = useCartContext();
     const [totalPrice, setTotalPrice] = useState(0);
     const [quantity, setQuantity] = useState(1)
+    const navigate = useNavigate()
 
-    console.log(cartItems, "$$$$$$$$$$$$$$$4")
     useEffect(() => {
         let newTotalPrice = cartItems.reduce((total, item) => total + item.price * quantity, 0);
         if (newTotalPrice > 0) {
@@ -17,6 +18,10 @@ export default function Cart() {
 
         }
     }, [cartItems, quantity]);
+
+    const handleCheckout = () => {
+        navigate('/payment')
+    }
 
     return (
         <div className="card">
@@ -28,23 +33,25 @@ export default function Cart() {
                             <div className="col align-self-center text-right text-muted">{cartCount} items</div>
                         </div>
                     </div>
-
-                    {cartItems.map((item, index) => (
-                        <div className="row border-top border-bottom" key={index}>
-                            <div className="row main align-items-center">
-                                <div className="col-2"><img className="img-fluid" src={"http://127.0.0.1:8000" + item.cover_img} alt={item.itemName} /></div>
-                                <div className="col">
-                                    <div className="row text-muted">{item.title}</div>
-                                    <div className="row">{item.author.first_name}</div>
+                    {cartItems.length > 0 ? (
+                        cartItems.map((item, index) => (
+                            <div className="row border-top border-bottom" key={index}>
+                                <div className="row main align-items-center">
+                                    <div className="col-2"><img className="img-fluid" src={"http://127.0.0.1:8000" + item.cover_img} alt={item.itemName} /></div>
+                                    <div className="col">
+                                        <div className="row text-muted">{item.title}</div>
+                                        <div className="row">{item.author.first_name}</div>
+                                    </div>
+                                    <div className="col">
+                                        <a href="#" onClick={() => { setQuantity(quantity - 1) }} className='quantity'>-</a><a href="#" className="border">{quantity}</a><a onClick={() => { setQuantity(quantity + 1) }} href="#" className='quantity'>+</a>
+                                    </div>
+                                    <div className="col">₹ {item.price} <span className="close">&#10005;</span></div>
                                 </div>
-                                <div className="col">
-                                    <a href="#" onClick={() => { setQuantity(quantity - 1) }} className='quantity'>-</a><a href="#" className="border">{quantity}</a><a onClick={() => { setQuantity(quantity + 1) }} href="#" className='quantity'>+</a>
-                                </div>
-                                <div className="col">₹ {item.price} <span className="close">&#10005;</span></div>
                             </div>
-                        </div>
-                    ))}
-
+                        ))
+                    ) : (
+                        <h2 id='cart-status'>Cart is empty</h2>
+                    )}
 
                 </div>
 
@@ -58,14 +65,14 @@ export default function Cart() {
                     <form>
                         <p>SHIPPING</p>
                         <select><option className="text-muted">Standard-Delivery- ₹50.00</option></select>
-                        <p>GIVE CODE</p>
+                        <p>ADDRESS</p>
                         <input id="code" placeholder="Enter your code" />
                     </form>
                     <div className="row" style={{ borderTop: '1px solid rgba(0,0,0,.1)', padding: '2vh 0' }}>
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">₹ {totalPrice}</div>
                     </div>
-                    <button className="btn">CHECKOUT</button>
+                    <button onClick={handleCheckout} className="btn">CHECKOUT</button>
                 </div>
             </div>
         </div >

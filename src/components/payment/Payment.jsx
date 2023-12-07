@@ -9,14 +9,6 @@ export default function Payment() {
         setPaymentMethod(method);
     };
 
-    const showdiv = () => {
-        if (isShown == true) {
-            setIsShown(false)
-        } else {
-            setIsShown(true)
-        }
-
-    }
     return (
         <div className="container">
             <div id="Checkout" className="inline">
@@ -47,7 +39,7 @@ export default function Payment() {
                     </div>
                     <div id='upi-div'>
                         <input type="radio" id='card' name="pay" className="payment" />
-                        <label htmlFor="card" onClick={() => { handlePaymentMethodChange('debit'); showdiv(); }}>Debit Card</label>
+                        <label htmlFor="card" onClick={() => { handlePaymentMethodChange('debit'); setIsShown(true); }}>Debit Card</label>
                     </div>
                     {isShown &&
                         <>
