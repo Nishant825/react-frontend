@@ -38,7 +38,7 @@ export default function Navbar() {
       <ToastContainer autoClose={1000} />
       <header>
         <a href="#" className="logo">
-          Daydream Library
+          Daydream Books
         </a>
         <nav className="lib-navbar">
           <div>
